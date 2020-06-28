@@ -138,21 +138,21 @@ async function handleNoderendering(node) {
     const nodeBottom = node.getBoundingClientRect().bottom;
     const nodeTop = node.getBoundingClientRect().top;
     const nodeHeight = node.getBoundingClientRect().height;
-    let distBottom = { h1: 0.45, h2: 0.15, h3: 0.12, h4: 0.05, h5: 0.05 }[
+    const distBottom = { h1: 0.45, h2: 0.15, h3: 0.12, h4: 0.05, h5: 0.05 }[
       node.tagName.toLowerCase()
-    ]; // distance (%) of the bottom of the page
-    // find the overflow line -------------------------------------------------
+    ]; // distance (%) off the bottom of the page
+    // find the overflow line ------------------------------------------------
     const pageContent = node.closest(".pagedjs_page_content");
     const pageContentHeight = pageContent.offsetHeight;
     // in the following code line, 40% from the bottom, so 60% from the top
     const lineOverflow = (1 - distBottom) * pageContentHeight;
-    // distance of the bottom node from the top of content area ---------------
+    // distance of the bottom node from the top of content area --------------
     const pageContentTop = pageContent.getBoundingClientRect().top;
     const dist = nodeBottom - pageContentTop;
     node.dataset.percentagePosition = `☜ ${Math.round(
       100 - (dist / pageContentHeight) * 100
     )}%`;
-    // add element to push the title next page / column ----------------------------
+    // add element to push the title next page / column ----------------------
     if (dist > lineOverflow) {
       if (Math.abs(nodeTop - pageContentTop) < 10) {
         console.log(node, "is massive, freak out");
