@@ -1,0 +1,839 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative&Raleway:wght@200&family=Noto+Serif+JP:wght@200;300;400;500;600;700;800;900&family=Raleway+Dots&display=swap");
+
+:root {
+  --wp-line-height: 1.4rem;
+  font-size: 3.175mm;
+  line-height: var(--wp-line-height);
+
+  --wp-content-area-height: 65rem;
+  --wp-extend-into-margin-dist: 2mm;
+
+  --max-img-height: calc(var(--wp-line-height) * 14);
+}
+
+body {
+  background-color: aliceblue;
+  font-family: "Noto Serif JP", serif;
+  font-size: 9pt;
+  font-weight: 300;
+  overflow-wrap: break-word;
+}
+
+@page {
+  margin-top: 2.8rem; /* 2 * 1.4 */
+  margin-bottom: 12.7mm; /* calc(
+      var(--pagedjs-pagebox-height) - 
+      var(--wp-top-margin-height) -
+      var(--wp-content-area-height)
+    ); */
+  /* size: A5; */
+  size: 6in 9in;
+}
+
+/* prettier-ignore */
+@page:left{
+    margin-right: 18mm;
+    margin-left: 12mm;
+  
+    @bottom-left {
+      content: counter(page);
+    }
+    @bottom-right {
+      content: attr(data-article-title);
+    }
+  }
+/* prettier-ignore */
+@page:right {
+    margin-right: 12mm;
+    margin-left: 18mm;
+  
+    @bottom-right {
+      content: counter(page);
+    }
+    @bottom-left {
+      content: attr(data-article-title);
+    }
+  }
+/* prettier-ignore */
+@page:blank{
+    @top-center {
+      border-bottom-color: hsla(0, 0%, 0%, 0.35);
+      border-bottom-style: dotted;
+      border-bottom-width: 2px;
+      /* content: "⚞ Notes ⚟"; */
+      content: "☙ Notes ❧";
+    }
+  }
+/* prettier-ignore */
+@page:first {
+    @bottom-right {
+      content: "";
+    }
+    /* Coming when paged.js finishes this feature */
+    /* @top-right {
+      content:attr(data-edition-number);
+    } */
+  }
+
+.pagedjs_margin-bottom-right,
+.pagedjs_margin-bottom-left {
+  /* move page number to the top of the margin box */
+  align-items: flex-start !important;
+}
+
+/* font-family: 'Noto Serif JP', serif;
+font-family: 'Raleway Dots', cursive;
+font-family: 'Cinzel Decorative', cursive; */
+* {
+  margin-top: 0;
+}
+
+.not-ready {
+  background-color: red !important;
+}
+
+.pagedjs_page {
+  background: white;
+}
+
+img {
+  font-size: 80%;
+  margin-bottom: -3px;
+  max-height: var(--max-img-height);
+  max-width: 40em;
+  object-fit: contain;
+  text-align: center;
+  /* make photos print more punchy in B&W? */
+  filter: saturate(0) contrast(1);
+}
+img,
+.ril_caption {
+  width: calc(100% + calc(var(--wp-extend-into-margin-dist) * 2));
+  margin-left: calc(var(--wp-extend-into-margin-dist) * -1);
+}
+/* img:before {
+  content: "The image that should be here isn't downloading 😥";
+  padding-left: 0.7em;
+  display: block;
+  float: right;
+  width: 14em;
+} */
+
+p,
+div,
+p strong,
+p em {
+  line-height: calc(var(--wp-line-height) * 1);
+}
+code {
+  line-height: 1rem;
+}
+p {
+  margin-bottom: calc(var(--wp-line-height) * 1);
+  orphans: 3;
+  widows: 3;
+  transform: translateY(3px);
+}
+
+a {
+  border-bottom: 1px #cacaca solid;
+  color: black;
+  text-decoration: none;
+}
+hr {
+  --hr-height: 1px;
+  border: 0;
+  height: var(--hr-height);
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0)
+  );
+  margin-bottom: calc(var(--wp-line-height) * 1 - var(--hr-height));
+}
+hr ~ hr {
+  /* who puts in a double HR? lunatics! */
+  display: none;
+}
+.star-break {
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
+/* a:after {
+    content: " (" attr(href) ")";
+    display: inline-block;
+    float: right;
+    font-size: 50%;
+    height: 2em;
+    width: 50%;
+} */
+
+ol,
+ul {
+  padding-left: 1em;
+  margin-bottom: calc(var(--wp-line-height) * 1);
+}
+
+pre {
+  font-size: 70%;
+  border-right: 2px dashed silver;
+  /* display: block; */
+  margin: 0;
+}
+
+pre code {
+  overflow-wrap: initial;
+}
+
+p code {
+  overflow-wrap: break-word;
+}
+
+ol.printOnly {
+  border-top: 0.3mm solid silver;
+  font-size: 80%;
+  margin-left: -1em;
+  /* margin-right: -1em; */
+  margin-top: 1em;
+  padding: 0;
+}
+
+li.printed-link {
+  break-inside: avoid;
+  line-height: calc(var(--wp-line-height) * 0.8);
+  margin-bottom: calc(var(--wp-line-height) * 0.2);
+  margin-left: 1.2em;
+  max-height: calc(var(--wp-line-height) * 1);
+  widows: 2;
+  orphans: 2;
+}
+img.pond-icon {
+  height: 1rem;
+  width: 1rem;
+  display: inline;
+  margin: initial;
+  transform: translateY(0.3rem) scale(1.9);
+}
+
+blockquote {
+  border-left: 1px solid hsla(0, 0%, 0%, 0.2);
+  font-family: "Raleway", sans-serif;
+  font-size: 110%;
+  margin-bottom: calc(var(--wp-line-height) * 1);
+  margin-left: calc(var(--wp-extend-into-margin-dist) * -1);
+  margin-right: 0;
+  padding-left: 1mm;
+  transform: translateY(4px);
+  width: calc(100% + calc(var(--wp-extend-into-margin-dist) * 2));
+}
+blockquote p {
+  transform: none;
+}
+blockquote cite {
+  font-size: 80%;
+  font-style: initial;
+  font-weight: bold;
+}
+
+ul li {
+  list-style-type: "— "; /* M dash as a bullet. ⁘ ⁕ ⁍ ⚊ are tempting too.*/
+  transform: translateY(3px);
+}
+blockquote ul li {
+  transform: translateY(0);
+}
+/* shortlink presentation */
+.slCode {
+  font-family: monospace;
+  font-size: 120%;
+}
+.internalLink {
+  opacity: 0.8;
+}
+
+figure {
+  width: 100%;
+  margin: 0;
+}
+
+iframe {
+  display: block;
+  height: calc(var(--wp-line-height) * 6);
+  margin-bottom: calc(var(--wp-line-height) * 1);
+  width: 100%;
+}
+
+.edition {
+  display: block;
+  text-align: right;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 80%;
+  break-after: always; /* blurb specific */
+}
+.edition span {
+  display: inline-block;
+  margin-left: 1em;
+}
+.front-page img {
+  /* bottom: 0; */
+  /* change this to move the front page image up and down each month. */
+  bottom: calc(var(--wp-line-height) * 2);
+  /*  */
+  filter: saturate(0) contrast(1);
+  height: 115mm;
+  max-height: unset;
+  max-width: unset;
+  mix-blend-mode: multiply;
+  position: absolute;
+}
+.front-page figcaption {
+  bottom: -3em;
+  font-size: 60%;
+  padding: 0 2.8rem;
+  position: absolute;
+  width: 100%;
+}
+
+.qr {
+  float: right;
+  transform: translate(2rem, -1rem);
+  width: calc(var(--wp-line-height) * 4);
+}
+
+.the-articles > article {
+  column-count: 2;
+  column-gap: 5mm;
+  column-fill: auto;
+  /* height: 782.389px; */
+  height: calc(
+    (
+        var(--pagedjs-pagebox-height) - var(--pagedjs-margin-top) -
+          var(--pagedjs-margin-bottom)
+      ) * 0.999
+  );
+  margin-bottom: calc(
+    (var(--wp-line-height) * 2) - 3px
+  ); /* This doesn't always do what it's supposed to, but it leaves the 
+        following article internally consistent, so it's fine for now. 
+        It leaves the text in the columns matching across the columns, but it 
+        breaks the vertical rythm.  
+        It'll probably need some JS to snap to a gridline eventually, in the 
+        very distant future.*/
+}
+
+article:first-of-type {
+  break-before: always;
+}
+
+article.has-code {
+  column-count: 1;
+}
+.toc {
+  /* column-count: 2; */
+  /* column-gap: 5em; */
+  /* column-rule: 0.3mm solid black; */
+  /* border-bottom: 0.3mm solid black; */
+  /* padding-bottom: 2em; */
+  break-before: right;
+  padding-top: 0rem;
+}
+.toc a {
+  text-decoration: none;
+  border: none;
+  font-weight: 800;
+}
+.toc .meta {
+  float: right;
+  font-size: 80%;
+  padding-left: 2em;
+}
+.toc small {
+  font-size: 70%;
+}
+.toc ol {
+  counter-reset: list-counter;
+  transform: translateY(3px);
+}
+.toc ol li img {
+  height: 1rem;
+  margin-left: 0;
+  position: initial;
+  vertical-align: text-top;
+  width: 1rem;
+}
+.toc a::before {
+  content: "p" target-counter(attr(href), page) "‒";
+  position: absolute;
+  left: -0.6em;
+  display: block;
+  width: 3em;
+  text-align: right;
+  font-weight: 300;
+}
+/* .toc a::after {
+      content: " (p"target-counter(attr(href), page) ")";
+  } */
+
+.toc li {
+  break-inside: avoid;
+  display: block;
+  line-height: var(--wp-line-height);
+  list-style-type: none;
+  margin-left: 5mm;
+}
+.toc-excerpt {
+  display: block;
+  font-size: 70%;
+  line-height: 3.2mm;
+  margin-bottom: 0.66666666rem;
+  margin-top: 0.5em;
+  padding-left: 1rem;
+  text-indent: -0.3rem;
+}
+
+span.time-to-read {
+  display: inline-block;
+}
+
+.name-title {
+  border-bottom: 0.5mm solid black;
+  column-span: all;
+  font-family: "Raleway Dots", cursive;
+  font-size: calc(var(--wp-line-height) * 7);
+  line-height: calc(var(--wp-line-height) * 8);
+  padding-bottom: calc(var(--wp-line-height) * 1);
+  padding-top: calc(var(--wp-line-height) * 1);
+}
+/* .owner {
+  display: none;
+} */
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  break-inside: avoid;
+  font-family: "Raleway", sans-serif;
+  page-break-inside: avoid;
+  margin-bottom: calc(var(--wp-line-height) * 1);
+}
+
+h1 {
+  font-size: 200%;
+  transform: translateY(7px);
+}
+h2 {
+  font-size: 165%;
+}
+h1,
+h2 {
+  line-height: calc(var(--wp-line-height) * 2);
+}
+h3,
+h4,
+h5 {
+  line-height: var(--wp-line-height);
+  transform: translateY(3px);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  break-after: avoid;
+}
+
+h1 + p {
+  break-before: avoid;
+}
+
+h1.article-title {
+  column-span: all;
+  display: block;
+  font-family: "Cinzel Decorative";
+  font-size: calc(var(--wp-line-height) * 2);
+  margin-bottom: -0.3rem;
+  margin-top: 0.5rem;
+  page-break-inside: avoid;
+  transform: none;
+}
+h1.article-title.mega-wordy-title {
+  font-size: 165%;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  padding-left: 1rem;
+  transform: translateY(2px);
+}
+h2 {
+  line-height: var(--wp-line-height);
+  margin-bottom: var(--wp-line-height);
+  transform: translateY(1px);
+}
+h2 + p,
+h3 + p,
+h4 + p,
+h5 + p {
+  orphans: 3;
+}
+
+.break-before {
+  page-break-before: always;
+  break-before: column;
+  background: antiquewhite;
+}
+
+.excerpt {
+  border-bottom: 1px solid;
+  border-top: 1px solid;
+  font-size: 1.25em;
+  margin-bottom: 1em;
+  margin: 0.8em 0;
+  padding: 0.5em 0;
+}
+
+.top-meta {
+  column-span: all;
+  display: block;
+  font-size: 80%;
+  line-height: var(--wp-line-height);
+  margin-bottom: 14px;
+}
+.top-meta span {
+  display: inline-block;
+}
+
+/* .date {} */
+/* .author {} */
+/* .author {} */
+/* div.body {} */
+/* rename this */
+.tail-meta {
+  font-size: 80%;
+  line-height: var(--wp-line-height);
+  min-height: 5rem;
+  word-wrap: break-word;
+}
+
+/* .date {} */
+span.url {
+  display: inline-block;
+  width: 13rem;
+  vertical-align: top;
+  orphans: 3;
+  widows: 3;
+}
+
+.ril_caption,
+figcaption {
+  display: block;
+  font-size: 70%;
+}
+
+#paper-story table {
+  max-width: 50%;
+}
+
+table {
+  border-bottom: 1px solid silver;
+  border-top: 1px solid silver;
+  column-span: all;
+  margin-bottom: calc(var(--wp-line-height) * 0.5);
+  margin-left: calc(-1 * var(--wp-extend-into-margin-dist));
+  margin-right: 0;
+  margin-top: calc(var(--wp-line-height) * 0.5);
+  padding-bottom: calc(var(--wp-line-height) * 0.5);
+  padding-top: calc(var(--wp-line-height) * 0.5);
+  width: calc(100% + (var(--wp-extend-into-margin-dist) * 2));
+}
+
+td {
+  padding-bottom: 1mm;
+}
+
+thead,
+tfoot {
+  break-inside: avoid;
+  display: table-header-group;
+}
+
+.shim {
+  height: 0.1px;
+  break-inside: avoid;
+}
+.shim-between-articles {
+  break-inside: avoid;
+  column-span: all;
+  height: 0.1px;
+}
+.RIL_IMG {
+  break-inside: avoid;
+}
+
+/* Back Page */
+.the-real-back-page .pagedjs_margin-bottom {
+  display: none;
+}
+.back-page {
+  break-before: left;
+}
+.inside-back-cover {
+  /* there needs to be a blank page on the penultimate page */
+  break-before: right;
+}
+.back-page h1 {
+  margin-bottom: 0;
+  font-family: "Cinzel Decorative";
+}
+.back-page-toc {
+  column-count: 2;
+  max-height: 45rem;
+}
+.back-page-toc li {
+  margin-bottom: calc(var(--wp-line-height) * 1);
+  break-inside: avoid;
+}
+.back-page-toc .toc_meta_publisher_icon {
+  float: right;
+  height: calc(var(--wp-line-height) * 1.5);
+  margin-left: 0;
+  mix-blend-mode: multiply;
+  width: calc(var(--wp-line-height) * 1.5);
+}
+.back-page-toc span.title {
+  font-size: 110%;
+  display: block;
+}
+.back-page-toc .meta {
+  display: none;
+}
+.end-vacat-page {
+  page-break-before: always;
+  height: var(--pagedjs-pagebox-height);
+}
+
+/* letter from the editor */
+.the-articles article.letter-from-the-editor {
+  height: calc(
+    (
+        var(--pagedjs-pagebox-height) - var(--pagedjs-margin-top) -
+          var(--pagedjs-margin-bottom)
+      ) * 0.99
+  );
+  column-count: 1;
+}
+.short-link-demo {
+  height: calc(var(--wp-line-height) * 2);
+  padding-left: 3rem;
+}
+.link-wiggle {
+  display: inline-block;
+  margin: 0 6px;
+  opacity: 0.8;
+  transform: scale(2) translateY(-1px);
+}
+/* .the-articles article.letter-from-the-editor .top-meta {} */
+/* .letter-from-the-editor p:first-of-type {
+  column-span: all;
+} */
+/* typography */
+sup,
+sub {
+  font-size: 70%;
+  position: relative;
+  vertical-align: baseline;
+  line-height: 0;
+}
+sup {
+  top: -0.8em;
+}
+sub {
+  top: 0.4em;
+}
+sup.printOnly {
+  font-size: 70%;
+}
+span.wp-times {
+  margin: 0 -0.1rem 0 0;
+  font-size: 78%;
+  transform: translateY(-0.1rem);
+  display: inline-block;
+}
+span.wp-mdash {
+  margin: 0 0.06em;
+}
+span.wp-slash {
+  margin: 0 0.05em;
+}
+
+/* medium author image */
+.medium\.com a img {
+  border-radius: 50%;
+  float: left;
+  width: 25%;
+}
+
+/* Ban list */
+a:empty,
+nav,
+input[type="checkbox"],
+p:empty,
+#adspot-interstitial,
+.adWrapper,
+.bnnr-list, 
+.boring-hidden,
+.c-promo-box,
+.free-trial-prompt,
+.paywall-panel,
+.prompt-panel,
+.seo-footer,
+.view-sidebar,
+/* medium.com */
+.medium\.com svg,
+.uxdesign\.cc svg,
+img[src*='medium.com/max/60'],
+img[src*='medium.com/max/2000'],
+/* PBS */
+.pbs\.org svg,
+.pbs\.org .carousel--content-strip,
+/* reddit */
+.reddit\.com svg,
+.reddit\.com header,
+.reddit\.com img[src*="badges"],
+.reddit\.com img[src*="communityIcon"],
+/* metmuseum */
+.metmuseum\.org .modal,
+/* wikipedia */
+.en-wikipedia-org .mw-editsection,
+/* Gizmodo io9 etc. */
+.io9\.gizmodo\.com .swappable-mobile-ad-container,
+.io9\.gizmodo\.com .magnifier
+.io9\.gizmodo\.com .js_ad-mobile-dynamic,
+.svg-icon.svg-zoom-in,
+/* Lifehacker */
+.lifehacker\.com svg[aria-label="ZoomIn icon"],
+.lifehacker\.com aside,
+/* goodreads */
+.goodreads\.com .rating,
+
+/* abc stuff: */
+.abc-net-au aside,
+.abc-net-au .view-wysiwyg,
+.abcLink.search,
+.abc-net-au .view-sidebar,
+/*this needs the get the changes from my laptop*/
+.abc-net-au img[src="https://res.abc.net.au/bundles/2.2.0/images/icon-search-grey@1x.png"],
+.abc-net-au .printOnly
+.abc-net-au .view-infosourcebyline
+/* amazing ribs */
+img[src="https://amazingribs.com/files/fixed-images/1-gold_82pixels.png"],
+/* Wikipedia */
+.mw-editsection,
+/* new yorker */
+a[href*='itm_content=footer-recirc'],
+/* new statesman */
+.in-article-newsletter-form,
+/* technologyreview.com */
+.technologyreview\.com svg,
+/* afr */
+.afr\.com a.skip-link,
+.afr\.com #ink-login-config,
+/* Hypebeast */
+.hypebeast\.com div[ga-impression-event-action="impressions_related_post"],
+/* the verge */
+.p-button-social.twitter,
+.p-button-social.facebook {
+  display: none;
+}
+
+.goodreads\.com img:first-of-type {
+  width: 1.5cm;
+  float: right;
+}
+
+.explained\.ai img[src*="svg"] {
+  display: inline-block;
+  width: 2em;
+}
+
+.wikitable {
+  column-span: all;
+  font-size: 60%;
+}
+
+.wikitable tr {
+  border-bottom: 0.25mm solid grey;
+}
+
+.wikitable .flagicon img {
+  width: 4em;
+}
+
+.smashingmagazine\.com .drop-caps {
+  width: 2em;
+  float: left;
+}
+
+.wikipedia-icon {
+  height: 1em;
+  margin-left: 0;
+  object-fit: contain;
+  width: 1em;
+}
+
+@media screen {
+  .pagedjs_page_content:before {
+    background-image: url(../scale_bar.png);
+    background-size: cover;
+    content: " ";
+    height: inherit;
+    left: -20mm;
+    opacity: 0.2;
+    position: absolute;
+    width: 20mm;
+  }
+  .shim {
+    outline: 1px solid blue;
+  }
+  .shim-div {
+    background: rgba(0, 255, 255, 0.4);
+    outline: 2px solid orange;
+  }
+  .snapped {
+    background-color: hotpink;
+  }
+  h1:before,
+  h2:before,
+  h3:before,
+  h4:before,
+  h5:before {
+    background-color: hsla(180, 100%, 25%, 0.7);
+    border-radius: 1rem;
+    color: hotpink;
+    content: attr(data-percentage-position);
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    padding: 1rem;
+    position: absolute;
+    right: -4rem;
+  }
+  h1:after,
+  h2:after,
+  h3:after,
+  h4:after,
+  h5:after {
+    content: " ";
+    display: block;
+    height: 0.1px;
+    left: -32rem;
+    outline: 1px solid hotpink;
+    position: absolute;
+    width: 600px;
+  }
+}
