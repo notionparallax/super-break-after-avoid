@@ -24,7 +24,7 @@ class MyHandler extends Paged.Handler {
   }
 
   renderNode(node) {
-    // handleNoderendering(node);
+    handleNoderendering(node);
     try {
       node.dataset.elementNumber = window.elementCounter;
       window.elementCounter++;
