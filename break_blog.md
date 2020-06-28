@@ -123,6 +123,59 @@ The right hand image shows an outlined div that's pushing a heading off the bott
 
 ## Talk is cheap, show me the code!
 
+There's a [working example here](https://notionparallax.github.io/super-break-after-avoid/paged_break_example.html)\* that you can play with. It comes from [this repo](https://github.com/notionparallax/super-break-after-avoid).
+
+The bit you're here for is the code though, so without further ado:
+
+```js
+async function handleNoderendering(node) {
+  if (
+    node &&
+    node.nodeType == Node.ELEMENT_NODE &&
+    node.matches("h1.article-title, h1, h2, h3, h4, h5")
+  ) {
+    // bumpElementToNextPageOrColumn(node);
+    const nodeBottom = node.getBoundingClientRect().bottom;
+    const nodeTop = node.getBoundingClientRect().top;
+    const nodeHeight = node.getBoundingClientRect().height;
+    let distBottom = { h1: 0.45, h2: 0.15, h3: 0.12, h4: 0.05, h5: 0.05 }[
+      node.tagName.toLowerCase()
+    ]; // distance (%) of the bottom of the page
+    // find the overflow line -------------------------------------------------
+    const pageContent = node.closest(".pagedjs_page_content");
+    const pageContentHeight = pageContent.offsetHeight;
+    // in the following code line, 40% from the bottom, so 60% from the top
+    const lineOverflow = (1 - distBottom) * pageContentHeight;
+    // distance of the bottom node from the top of content area ---------------
+    const pageContentTop = pageContent.getBoundingClientRect().top;
+    const dist = nodeBottom - pageContentTop;
+    node.dataset.percentagePosition = `☜ ${Math.round(
+      100 - (dist / pageContentHeight) * 100
+    )}%`;
+    // add element to push the title next page / column ----------------------------
+    if (dist > lineOverflow) {
+      if (Math.abs(nodeTop - pageContentTop) < 10) {
+        console.log(node, "is massive, freak out");
+        node.classList.add("mega-wordy-title");
+      } else {
+        console.log("in renderNode", "bumping", node);
+        const shimDiv = document.createElement("div");
+        const shimHeight = nodeHeight + pageContentHeight - dist;
+        shimDiv.style.setProperty("--remaining-distance", shimHeight + "px");
+        const heightVal = " var(--remaining-distance)";
+        shimDiv.style.height = heightVal;
+        shimDiv.classList.add("shim-div");
+        shimDiv.style.columnSpan = window.getComputedStyle(node).columnSpan;
+        node.parentNode.insertBefore(shimDiv, node);
+      }
+    }
+  }
+  return node;
+}
+```
+
+\*Caveat: your browser and version might well work totally differently!
+
 ## Cool, so that's it then?
 
 Oh, if only!
