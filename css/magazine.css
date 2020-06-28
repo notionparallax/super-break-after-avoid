@@ -60,10 +60,6 @@ body {
   /* move page number to the top of the margin box */
   align-items: flex-start !important;
 }
-
-/* font-family: 'Noto Serif JP', serif;
-font-family: 'Raleway Dots', cursive;
-font-family: 'Cinzel Decorative', cursive; */
 * {
   margin-top: 0;
 }
@@ -91,13 +87,6 @@ img,
   width: calc(100% + calc(var(--wp-extend-into-margin-dist) * 2));
   margin-left: calc(var(--wp-extend-into-margin-dist) * -1);
 }
-/* img:before {
-  content: "The image that should be here isn't downloading 😥";
-  padding-left: 0.7em;
-  display: block;
-  float: right;
-  width: 14em;
-} */
 
 p,
 div,
@@ -141,15 +130,6 @@ hr ~ hr {
   display: block;
   text-align: center;
 }
-
-/* a:after {
-    content: " (" attr(href) ")";
-    display: inline-block;
-    float: right;
-    font-size: 50%;
-    height: 2em;
-    width: 50%;
-} */
 
 ol,
 ul {
@@ -225,64 +205,10 @@ ul li {
 blockquote ul li {
   transform: translateY(0);
 }
-/* shortlink presentation */
-.slCode {
-  font-family: monospace;
-  font-size: 120%;
-}
-.internalLink {
-  opacity: 0.8;
-}
 
 figure {
   width: 100%;
   margin: 0;
-}
-
-iframe {
-  display: block;
-  height: calc(var(--wp-line-height) * 6);
-  margin-bottom: calc(var(--wp-line-height) * 1);
-  width: 100%;
-}
-
-.edition {
-  display: block;
-  text-align: right;
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 80%;
-  break-after: always; /* blurb specific */
-}
-.edition span {
-  display: inline-block;
-  margin-left: 1em;
-}
-.front-page img {
-  /* bottom: 0; */
-  /* change this to move the front page image up and down each month. */
-  bottom: calc(var(--wp-line-height) * 2);
-  /*  */
-  filter: saturate(0) contrast(1);
-  height: 115mm;
-  max-height: unset;
-  max-width: unset;
-  mix-blend-mode: multiply;
-  position: absolute;
-}
-.front-page figcaption {
-  bottom: -3em;
-  font-size: 60%;
-  padding: 0 2.8rem;
-  position: absolute;
-  width: 100%;
-}
-
-.qr {
-  float: right;
-  transform: translate(2rem, -1rem);
-  width: calc(var(--wp-line-height) * 4);
 }
 
 .the-articles > article {
@@ -426,11 +352,6 @@ h5 + p {
   display: inline-block;
 }
 
-/* .date {} */
-/* .author {} */
-/* .author {} */
-/* div.body {} */
-/* rename this */
 .tail-meta {
   font-size: 80%;
   line-height: var(--wp-line-height);
@@ -480,15 +401,6 @@ tfoot {
   display: table-header-group;
 }
 
-.shim {
-  height: 0.1px;
-  break-inside: avoid;
-}
-.shim-between-articles {
-  break-inside: avoid;
-  column-span: all;
-  height: 0.1px;
-}
 .RIL_IMG {
   break-inside: avoid;
 }
@@ -507,135 +419,13 @@ sup {
 sub {
   top: 0.4em;
 }
-sup.printOnly {
-  font-size: 70%;
-}
-span.wp-times {
-  margin: 0 -0.1rem 0 0;
-  font-size: 78%;
-  transform: translateY(-0.1rem);
-  display: inline-block;
-}
-span.wp-mdash {
-  margin: 0 0.06em;
-}
-span.wp-slash {
-  margin: 0 0.05em;
-}
-
-/* medium author image */
-.medium\.com a img {
-  border-radius: 50%;
-  float: left;
-  width: 25%;
-}
 
 /* Ban list */
 a:empty,
 nav,
 input[type="checkbox"],
-p:empty,
-#adspot-interstitial,
-.adWrapper,
-.bnnr-list, 
-.boring-hidden,
-.c-promo-box,
-.free-trial-prompt,
-.paywall-panel,
-.prompt-panel,
-.seo-footer,
-.view-sidebar,
-/* medium.com */
-.medium\.com svg,
-.uxdesign\.cc svg,
-img[src*='medium.com/max/60'],
-img[src*='medium.com/max/2000'],
-/* PBS */
-.pbs\.org svg,
-.pbs\.org .carousel--content-strip,
-/* reddit */
-.reddit\.com svg,
-.reddit\.com header,
-.reddit\.com img[src*="badges"],
-.reddit\.com img[src*="communityIcon"],
-/* metmuseum */
-.metmuseum\.org .modal,
-/* wikipedia */
-.en-wikipedia-org .mw-editsection,
-/* Gizmodo io9 etc. */
-.io9\.gizmodo\.com .swappable-mobile-ad-container,
-.io9\.gizmodo\.com .magnifier
-.io9\.gizmodo\.com .js_ad-mobile-dynamic,
-.svg-icon.svg-zoom-in,
-/* Lifehacker */
-.lifehacker\.com svg[aria-label="ZoomIn icon"],
-.lifehacker\.com aside,
-/* goodreads */
-.goodreads\.com .rating,
-
-/* abc stuff: */
-.abc-net-au aside,
-.abc-net-au .view-wysiwyg,
-.abcLink.search,
-.abc-net-au .view-sidebar,
-/*this needs the get the changes from my laptop*/
-.abc-net-au img[src="https://res.abc.net.au/bundles/2.2.0/images/icon-search-grey@1x.png"],
-.abc-net-au .printOnly
-.abc-net-au .view-infosourcebyline
-/* amazing ribs */
-img[src="https://amazingribs.com/files/fixed-images/1-gold_82pixels.png"],
-/* Wikipedia */
-.mw-editsection,
-/* new yorker */
-a[href*='itm_content=footer-recirc'],
-/* new statesman */
-.in-article-newsletter-form,
-/* technologyreview.com */
-.technologyreview\.com svg,
-/* afr */
-.afr\.com a.skip-link,
-.afr\.com #ink-login-config,
-/* Hypebeast */
-.hypebeast\.com div[ga-impression-event-action="impressions_related_post"],
-/* the verge */
-.p-button-social.twitter,
-.p-button-social.facebook {
+p:empty {
   display: none;
-}
-
-.goodreads\.com img:first-of-type {
-  width: 1.5cm;
-  float: right;
-}
-
-.explained\.ai img[src*="svg"] {
-  display: inline-block;
-  width: 2em;
-}
-
-.wikitable {
-  column-span: all;
-  font-size: 60%;
-}
-
-.wikitable tr {
-  border-bottom: 0.25mm solid grey;
-}
-
-.wikitable .flagicon img {
-  width: 4em;
-}
-
-.smashingmagazine\.com .drop-caps {
-  width: 2em;
-  float: left;
-}
-
-.wikipedia-icon {
-  height: 1em;
-  margin-left: 0;
-  object-fit: contain;
-  width: 1em;
 }
 
 @media screen {
@@ -649,16 +439,7 @@ a[href*='itm_content=footer-recirc'],
     position: absolute;
     width: 20mm;
   }
-  .shim {
-    outline: 1px solid blue;
-  }
-  .shim-div {
-    background: rgba(0, 255, 255, 0.4);
-    outline: 2px solid orange;
-  }
-  .snapped {
-    background-color: hotpink;
-  }
+
   h1:before,
   h2:before,
   h3:before,
@@ -687,5 +468,9 @@ a[href*='itm_content=footer-recirc'],
     outline: 1px solid hotpink;
     position: absolute;
     width: 600px;
+  }
+  .shim-div {
+    outline: 3px solid orange;
+    background-color: aqua;
   }
 }
