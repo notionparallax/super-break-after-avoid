@@ -54,26 +54,6 @@ body {
       content: attr(data-article-title);
     }
   }
-/* prettier-ignore */
-@page:blank{
-    @top-center {
-      border-bottom-color: hsla(0, 0%, 0%, 0.35);
-      border-bottom-style: dotted;
-      border-bottom-width: 2px;
-      /* content: "⚞ Notes ⚟"; */
-      content: "☙ Notes ❧";
-    }
-  }
-/* prettier-ignore */
-@page:first {
-    @bottom-right {
-      content: "";
-    }
-    /* Coming when paged.js finishes this feature */
-    /* @top-right {
-      content:attr(data-edition-number);
-    } */
-  }
 
 .pagedjs_margin-bottom-right,
 .pagedjs_margin-bottom-left {
@@ -93,7 +73,7 @@ font-family: 'Cinzel Decorative', cursive; */
 }
 
 .pagedjs_page {
-  background: white;
+  /* background: white; */
 }
 
 img {
@@ -326,74 +306,12 @@ iframe {
         very distant future.*/
 }
 
-article:first-of-type {
+/* article:first-of-type {
   break-before: always;
-}
+} */
 
 article.has-code {
   column-count: 1;
-}
-.toc {
-  /* column-count: 2; */
-  /* column-gap: 5em; */
-  /* column-rule: 0.3mm solid black; */
-  /* border-bottom: 0.3mm solid black; */
-  /* padding-bottom: 2em; */
-  break-before: right;
-  padding-top: 0rem;
-}
-.toc a {
-  text-decoration: none;
-  border: none;
-  font-weight: 800;
-}
-.toc .meta {
-  float: right;
-  font-size: 80%;
-  padding-left: 2em;
-}
-.toc small {
-  font-size: 70%;
-}
-.toc ol {
-  counter-reset: list-counter;
-  transform: translateY(3px);
-}
-.toc ol li img {
-  height: 1rem;
-  margin-left: 0;
-  position: initial;
-  vertical-align: text-top;
-  width: 1rem;
-}
-.toc a::before {
-  content: "p" target-counter(attr(href), page) "‒";
-  position: absolute;
-  left: -0.6em;
-  display: block;
-  width: 3em;
-  text-align: right;
-  font-weight: 300;
-}
-/* .toc a::after {
-      content: " (p"target-counter(attr(href), page) ")";
-  } */
-
-.toc li {
-  break-inside: avoid;
-  display: block;
-  line-height: var(--wp-line-height);
-  list-style-type: none;
-  margin-left: 5mm;
-}
-.toc-excerpt {
-  display: block;
-  font-size: 70%;
-  line-height: 3.2mm;
-  margin-bottom: 0.66666666rem;
-  margin-top: 0.5em;
-  padding-left: 1rem;
-  text-indent: -0.3rem;
 }
 
 span.time-to-read {
@@ -575,72 +493,6 @@ tfoot {
   break-inside: avoid;
 }
 
-/* Back Page */
-.the-real-back-page .pagedjs_margin-bottom {
-  display: none;
-}
-.back-page {
-  break-before: left;
-}
-.inside-back-cover {
-  /* there needs to be a blank page on the penultimate page */
-  break-before: right;
-}
-.back-page h1 {
-  margin-bottom: 0;
-  font-family: "Cinzel Decorative";
-}
-.back-page-toc {
-  column-count: 2;
-  max-height: 45rem;
-}
-.back-page-toc li {
-  margin-bottom: calc(var(--wp-line-height) * 1);
-  break-inside: avoid;
-}
-.back-page-toc .toc_meta_publisher_icon {
-  float: right;
-  height: calc(var(--wp-line-height) * 1.5);
-  margin-left: 0;
-  mix-blend-mode: multiply;
-  width: calc(var(--wp-line-height) * 1.5);
-}
-.back-page-toc span.title {
-  font-size: 110%;
-  display: block;
-}
-.back-page-toc .meta {
-  display: none;
-}
-.end-vacat-page {
-  page-break-before: always;
-  height: var(--pagedjs-pagebox-height);
-}
-
-/* letter from the editor */
-.the-articles article.letter-from-the-editor {
-  height: calc(
-    (
-        var(--pagedjs-pagebox-height) - var(--pagedjs-margin-top) -
-          var(--pagedjs-margin-bottom)
-      ) * 0.99
-  );
-  column-count: 1;
-}
-.short-link-demo {
-  height: calc(var(--wp-line-height) * 2);
-  padding-left: 3rem;
-}
-.link-wiggle {
-  display: inline-block;
-  margin: 0 6px;
-  opacity: 0.8;
-  transform: scale(2) translateY(-1px);
-}
-/* .the-articles article.letter-from-the-editor .top-meta {} */
-/* .letter-from-the-editor p:first-of-type {
-  column-span: all;
-} */
 /* typography */
 sup,
 sub {
