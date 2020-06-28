@@ -1,6 +1,6 @@
 # Decapitated headings!
 
-I'm Ben and I make a zine called [Walden Pond](https://waldenpond.press). I'm using [Paged.js][1] to lay out text that I'm pulling from the Pocket api into a monthly magazine. Browsers are optimised pretty heavily for screens, [Paged.js][1] has been incredibly helpful in solving a lot of the issues that come from trying to lay out pages nicely, but there's always a _bit more_ to do.
+I'm Ben and I make a zine called [Walden Pond](https://waldenpond.press). I'm using [Paged.js](https://www.pagedjs.org/) to lay out text that I'm pulling from the Pocket api into a monthly magazine. Browsers are optimised pretty heavily for screens, [Paged.js](https://www.pagedjs.org/) has been incredibly helpful in solving a lot of the issues that come from trying to lay out pages nicely, but there's always a _bit more_ to do.
 
 I've had lots of arguments with friends about the merits of Latex vs browser rendering. I feel that Latex is probably still the better place to render text, but browsers are catching up fast, and if content can live in one place, and be consumed in many, then the holy trinity of html/css/js is the logical place to put our efforts.
 
@@ -8,7 +8,7 @@ One of the things that browsers seem to particularly struggle with is laying thi
 
 Headings are there to head something. They live to be attached to bodies, and without them they're very sad. Consider the pages below, there's a heading at the bottom of the page, what is it heading?
 
-![diagram of a bad page, and the two pages that it would ideally be transformed into][4]
+![diagram of a bad page, and the two pages that it would ideally be transformed into](https://i.stack.imgur.com/E4plw.png)
 
 Is it fancy graphic design? Or is it adrift and unable to find meaning in this world?
 
@@ -35,11 +35,11 @@ The pages in Walden Pond have a 2 column layout. Article headings span both colu
 
 It's easier to explain things with diagrams, here are two pages with acceptable layouts:
 
-![Diagram of two acceptable pages][2]
+![Diagram of two acceptable pages](https://i.stack.imgur.com/viJXw.png)
 
 They've both got article headings and sub headings in good places. I.e. not at the bottom of a column. If there's a situation where a heading is at the bottom of a column, We'd like the heading to be forced to the top of next column.
 
-![Diagram of a heading being bumped to the next column][3]
+![Diagram of a heading being bumped to the next column](https://i.stack.imgur.com/nK0gK.png)
 
 That seems pretty simple. Indesign has a concept of [keep options](https://indesignsecrets.com/keep-options-interact.php) which tries to keep headings with the paragraph after them. [Latex has](https://tex.stackexchange.com/questions/32111/how-to-keep-heading-together-with-text) the [needspace](https://ctan.org/pkg/needspace) package/concept which seems to do the same.
 
@@ -100,7 +100,7 @@ If this heading ends up at the bottom of the column _my_ brain assumes that it's
 
 ## So how do we solve this problem?
 
-I tried all sorts of ways of solving this, all had their own way of failing. Again[Julie Blanc](https://twitter.com/julieblancfr) came to my rescue. It turns out that I was trying to control the layout at the wrong point in the layout's lifecycle.
+I tried all sorts of ways of solving this, all had their own way of failing. Again [Julie Blanc](https://twitter.com/julieblancfr) came to my rescue. It turns out that I was trying to control the layout at the wrong point in the layout's lifecycle.
 
 I was trying to do the work in `afterPageLayout` but I _should_ have been doing it in `renderNode`. As far as I can tell, `renderNode` put the element on the page, and then gives you a chance to change it. Then it re-renders it. (I'd love a description/diagram of how the Paged lifecycle works!)
 
@@ -108,8 +108,8 @@ Julie's solution is elegant. Look at the header, if it's in a bad place (however
 
 <figure>
 
-![Diagram of a page with opportunities to shim marked][5]
-![Screenshot of a real page with a shim that bumps a heading to the next page][6]
+![Diagram of a page with opportunities to shim marked](https://i.stack.imgur.com/O67Wv.png)
+![Screenshot of a real page with a shim that bumps a heading to the next page](https://i.stack.imgur.com/GApAm.png)
 
 <figcaption>
 
@@ -173,12 +173,3 @@ I've found another thing that can cause poor positioning. If an image takes a wh
 ![image_rendering_delay](https://gitlab.pagedmedia.org/tools/pagedjs/uploads/6d14194c6d15ee951098571cef8db93a/image_rendering_delay.png)
 
 I think that this could be handled by loading each image in a promise, but I'm not really a promise wizard yet. 🧙‍♂️
-
-[1]: https://www.pagedjs.org/
-[2]: https://i.stack.imgur.com/viJXw.png
-[3]: https://i.stack.imgur.com/nK0gK.png
-[4]: https://i.stack.imgur.com/E4plw.png
-[5]: https://i.stack.imgur.com/O67Wv.png
-[6]: https://i.stack.imgur.com/GApAm.png
-[7]: https://i.stack.imgur.com/H4Hpp.png
-[8]: https://i.stack.imgur.com/hbqyy.png
